@@ -12,9 +12,17 @@ let intialLoad = true
 // Unplash username : Neer84472
 
 // We are reassigning the count variable that is why it should be let instead of const 
-let count = 5;
+let initialCount = 5;
 const apiKey ='4bdZ5ID8aZU0Yp8zoqcD99ruwcGYbFWspq04oKKV3Rg'; 
-const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`
+const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${initialCount}`
+
+function updateAPIURLWithNewCount(picCount){
+
+  apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${picCount}`
+
+}
+
+
 
 // Check if all Images were loaded
 
@@ -110,7 +118,14 @@ async function getPhotos(){
     // console.log(data); 
     // console.log(photosArray)
 
-    displayPhotos(); 
+    displayPhotos();
+    
+    if(intialLoad){
+
+      updateAPIURLWithNewCount(30);
+      intialLoad = false;
+
+    }
 
     } catch (error) {
       // Catch Error Here  
