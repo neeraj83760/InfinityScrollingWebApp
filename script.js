@@ -11,7 +11,8 @@ let intialLoad = true
 // Unplash API 
 // Unplash username : Neer84472
 
-// We are reassigning the count variable that is why it should be let instead of const 
+// We are reassigning the count variable that is why it should be let instead of const
+// Here we are loading less images coz users might be on slow internet connection so 
 let initialCount = 5;
 const apiKey ='4bdZ5ID8aZU0Yp8zoqcD99ruwcGYbFWspq04oKKV3Rg'; 
 const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${initialCount}`
