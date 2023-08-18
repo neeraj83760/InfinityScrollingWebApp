@@ -16,6 +16,7 @@ let initialCount = 5;
 const apiKey ='4bdZ5ID8aZU0Yp8zoqcD99ruwcGYbFWspq04oKKV3Rg'; 
 const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${initialCount}`
 
+// created a new function to make the code more readable 
 function updateAPIURLWithNewCount(picCount){
 
   apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${picCount}`
