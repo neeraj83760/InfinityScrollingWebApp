@@ -6,9 +6,13 @@ let imagesLoaded = 0;
 let totalImages = 0; 
 let photosArray = [];
 
+let intialLoad = true
+
 // Unplash API 
 // Unplash username : Neer84472
-const count = 30;
+
+// We are reassigning the count variable that is why it should be let instead of const 
+let count = 5;
 const apiKey ='4bdZ5ID8aZU0Yp8zoqcD99ruwcGYbFWspq04oKKV3Rg'; 
 const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`
 
@@ -16,13 +20,16 @@ const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count
 
 function imageLoaded(){
 
-  console.log('Image Loaded')
+  // console.log('Image Loaded')
   imagesLoaded++;
-
+  console.log(imagesLoaded);
   if(imagesLoaded === totalImages){
 
     ready = true;
     console.log('read =', ready);
+    loader.hidden = true
+    // intialLoad = false
+    count = 30
   }
 
 }
@@ -44,7 +51,8 @@ function setAttributes(element, attributes){
 // Create Elements for Links and Photos, Add to DOM
 
 function displayPhotos(){
-
+   
+   imagesLoaded = 0;  
    totalImages = photosArray.length;
    console.log('total Images ', totalImages ); 
 
