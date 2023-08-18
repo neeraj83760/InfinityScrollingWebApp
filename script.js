@@ -132,7 +132,7 @@ async function getPhotos(){
     }
 }
 
-// check to see if scrolling near bottom of page, Load more photos 
+// check to see if scrolling near bottom of page, Load more photoss 
 
 window.addEventListener('scroll', ()=>{
 
