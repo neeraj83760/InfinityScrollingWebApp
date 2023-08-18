@@ -1,13 +1,34 @@
 const imageContainer = document.getElementById('image-container')
 const loader = document.getElementById('loader')
 
+let ready = false; 
+let imagesLoaded = 0; 
+let totalImages = 0; 
 let photosArray = [];
 
 // Unplash API 
 // Unplash username : Neer84472
-const count = 10;
+const count = 30;
 const apiKey ='4bdZ5ID8aZU0Yp8zoqcD99ruwcGYbFWspq04oKKV3Rg'; 
 const apiURL = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`
+
+// Check if all Images were loaded
+
+function imageLoaded(){
+
+  console.log('Image Loaded')
+  imagesLoaded++;
+
+  if(imagesLoaded === totalImages){
+
+    ready = true;
+    console.log('read =', ready);
+  }
+
+}
+
+
+
 
 // Need to create a helper function coz we need to follow DRY(dont repeat yourself) principle 
 
@@ -23,6 +44,9 @@ function setAttributes(element, attributes){
 // Create Elements for Links and Photos, Add to DOM
 
 function displayPhotos(){
+
+   totalImages = photosArray.length;
+   console.log('total Images ', totalImages ); 
 
   //  Run function for FOR each object in PhotosArray
 
@@ -50,6 +74,12 @@ function displayPhotos(){
     alt: photo.alt_description,
     title: photo.alt_description,
   })
+
+
+  // Event Listener, check when each is finsihed loading
+
+  img.addEventListener('load', imageLoaded); 
+
 
   // Put <img> inside <a> element, then put both inside image container element
  
@@ -84,8 +114,11 @@ async function getPhotos(){
 window.addEventListener('scroll', ()=>{
 
   // console.log('scrolled')
-  if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000){
-
+  if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && 
+     ready 
+    ){
+     
+     ready = false; 
     // console.log('window.innerHeight:', window.innerHeight)
     // console.log('window.scrollY:', window.scrollY)
     // console.log('window.innerHeight + scrollY', window.scrollY + window.innerHeight)
